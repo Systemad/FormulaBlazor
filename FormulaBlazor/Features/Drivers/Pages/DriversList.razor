@@ -1,0 +1,65 @@
+﻿@page "/drivers"
+@using FormulaBlazor.Features.Drivers.DTO
+<PageTitle>Drivers</PageTitle>
+<MudPaper Class="pa-6" MinHeight="90vh" Height="90vh" Style="background-color: aquamarine">
+    <MudTable @ref="mudTable" Items="@_driverStanding.DriverStanding"
+          Style="background-color: chartreuse"
+              Hover="true" Breakpoint="Breakpoint.Sm"
+              FixedHeader="true"
+              Height="85vh"
+              Loading="@_loading" LoadingProgressColor="Color.Info"
+              T="DriverDto" RowClassFunc="@SelectedRowClassFunc"
+              OnRowClick="RowClickEvent">
+        <HeaderContent>
+            <MudTh>Name</MudTh>
+            <MudTh>Points</MudTh>
+            <MudTh>Wins</MudTh>
+            <MudTh>Position</MudTh>
+            <MudTh>Constructor</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Name">@context.GivenName @context.FamilyName</MudTd>
+            <MudTd DataLabel="Points">@context.Points</MudTd>
+            <MudTd DataLabel="Wins">@context.Wins</MudTd>
+            <MudTd DataLabel="Position" HideSmall="_hidePosition">@context.Position</MudTd>
+            <MudTd DataLabel="Constructor">@context.Constructor</MudTd>
+        </RowTemplate>
+    </MudTable>
+    
+    <MudCard>
+        <MudGrid Spacing="2">
+            <MudItem xs="6">
+                <MudCardMedia
+                    Image="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Max_Verstappen_2017_Malaysia_3.jpg/330px-Max_Verstappen_2017_Malaysia_3.jpg"/>
+
+                </MudItem>
+                <MudItem xs="6">
+                    <MudCardContent>
+                        <MudText Typo="Typo.h3">Max Verstappen</MudText>
+                        <MudText Typo="Typo.body2">Old paint found on a stone house door.</MudText>
+                        <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
+                        </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Text" Color="Color.Primary">Learn more</MudButton>
+                        <MudButton Variant="Variant.Text" Color="Color.Primary">Close</MudButton>
+                    </MudCardActions>
+                </MudItem>
+        </MudGrid>
+    </MudCard>
+    
+    <MudPopover Open="_popOverOpen" TransformOrigin="@Origin.CenterCenter" AnchorOrigin="@Origin.CenterCenter"
+                Elevation="4" Class="pa-4">
+        <MudCard>
+            <MudCardMedia Image="@_selectedDriver.ImageUrl" Height="200" />
+            <MudCardContent>
+                <MudText Typo="Typo.h5">@_selectedDriver.GivenName - @_selectedDriver.FamilyName</MudText>
+                <MudText Typo="Typo.body2">Old paint found on a stone house door.</MudText>
+                <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Text" Color="Color.Primary">Learn more</MudButton>
+                <MudButton Variant="Variant.Text" Color="Color.Primary">Close</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudPopover>
+</MudPaper>

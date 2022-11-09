@@ -1,0 +1,38 @@
+﻿@inject NavigationManager Navigation
+
+<MudAppBar Color="Color.Transparent" Fixed="true" Bottom="false" Elevation="0">
+    <MudSpacer/>
+    <MudTabs Elevation="2"  Rounded="true" Centered="true" Color="Color.Dark">
+        <MudTabPanel Icon="@Icons.Material.Filled.Home" Text="Home" OnClick="() => Navigate(Links.Home)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.Person" Text="Drivers" OnClick="() => Navigate(Links.Drivers)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.Group" Text="Teams" OnClick="() => Navigate(Links.Teams)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.CalendarMonth" Text="Calendar" OnClick="() => Navigate(Links.Calendar)" Disabled="true"/>
+        @if (_themeService.IsDarkMode)
+        {
+            <MudTabPanel Variant="Variant.Filled" Icon="@Icons.Material.Filled.DarkMode" OnClick="ToggleTheme"/>
+        }
+        else
+        {
+            <MudTabPanel Variant="Variant.Filled" Icon="@Icons.Material.Filled.LightMode" OnClick="ToggleTheme"/>
+        }
+    </MudTabs>
+    <MudSpacer/>
+</MudAppBar>
+
+@code{
+    
+    private int _panelIndex = 0;
+    
+    private void Navigate(string link)
+    {
+        _panelIndex = link switch
+        {
+            "driver" => 0,
+            "teams" => 1,
+            "calendar" => 2,
+            _ => _panelIndex
+            };
+        Navigation.NavigateTo(link);
+    }
+
+}

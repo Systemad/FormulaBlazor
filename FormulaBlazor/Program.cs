@@ -1,4 +1,8 @@
 using FormulaBlazor.Data;
+using FormulaBlazor.Features.Common;
+using FormulaBlazor.Features.Common.Ergast;
+using FormulaBlazor.Features.Common.Wikipedia;
+using FormulaBlazor.Features.Theme;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +11,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMudServices();
+builder.Services.AddHttpClient<IBaseErgastClient, BaseErgastClient>(
+    "ergast",
+    options =>
+    {
+        options.BaseAddress = new Uri("http://ergast.com/api/f1/");
+    }
+); //.AddHttpMessageHandler<FixUrlJsonHandler>();
+builder.Services.AddHttpClient<IWikiBaseClient, WikiBaseClient>(
+    "wikipedia",
+    options =>
+    {
+        options.BaseAddress = new Uri("https://en.wikipedia.org/api/rest_v1/page/summary/");
+    }
+);
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<ThemeService>();
 
 var app = builder.Build();
 
