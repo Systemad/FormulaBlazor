@@ -5,8 +5,7 @@ namespace FormulaBlazor.Features.Theme;
 public class ThemeService
 {
     public bool IsDarkMode { get; set; } = false;
-    //public EventHandler EventHandler;
-    
+
     public MudTheme Theme { get; set; }
 
     public void SetDarkMode(bool value)
@@ -14,15 +13,19 @@ public class ThemeService
         IsDarkMode = value;
     }
 
-    public event EventHandler EventHandlerState;
+    public event EventHandler MajorUpdateOccured;
+
+    private void OnMajorUpdateOccured() => MajorUpdateOccured?.Invoke(this, EventArgs.Empty);
+
     public void SetTheme(MudTheme theme)
     {
         Theme = theme;
-        EventHandlerState?.Invoke(this, EventArgs.Empty);
+        OnMajorUpdateOccured();
     }
+
     public void ToggleDarkMode()
     {
         IsDarkMode = !IsDarkMode;
-        EventHandlerState?.Invoke(this, EventArgs.Empty);
+        OnMajorUpdateOccured();
     }
 }

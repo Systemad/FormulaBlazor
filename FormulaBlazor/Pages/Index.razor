@@ -1,28 +1,33 @@
 ﻿@page "/"
 
 
-<MudPaper Elevation="0" Width="100%" Height="100%" Style="background: antiquewhite">
-    <MudContainer Class="pa-4" MaxWidth="MaxWidth.False">
-        <MudGrid>
-            <MudItem xs="12" sm="6" md="4">
-                <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-            </MudItem>
-            <MudItem xs="12" sm="6" md="4">
-                <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-            </MudItem>
-            <MudItem xs="12" sm="12" md="4">
-                <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-            </MudItem>
-            <MudItem xs="12" sm="6">
-                <MudGrid>
-                    <MudItem xs="12">
-                        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-                    </MudItem>
-                    <MudItem xs="12">
-                        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-                    </MudItem>
-                </MudGrid>
-            </MudItem>
-        </MudGrid>
+@***
+<MudPaper Elevation="0">
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudPaper Class="rounded-lg pa-4" Elevation="8">
+***@
+<MudContainer MaxWidth="MaxWidth.Large" Style="overflow: scroll">
+        <MudPaper Outlined="true" Elevation="0" Class="pa-4">
+                    <MudGrid>
+                        <MudItem xs="12" sm="6" md="4">
+                            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+                        </MudItem>
+                        <MudItem xs="12" sm="6" md="4">
+                            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="4">
+                            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+                        </MudItem>
+                        <MudItem xs="12" sm="6">
+                            <MudGrid>
+                                <MudItem xs="12">
+                                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+                                </MudItem>
+                                <MudItem xs="12">
+                                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+                                </MudItem>
+                            </MudGrid>
+                        </MudItem>
+                    </MudGrid>
+        </MudPaper>
     </MudContainer>
-</MudPaper>

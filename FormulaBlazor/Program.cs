@@ -1,5 +1,4 @@
 using FormulaBlazor.Data;
-using FormulaBlazor.Features.Common;
 using FormulaBlazor.Features.Common.Ergast;
 using FormulaBlazor.Features.Common.Wikipedia;
 using FormulaBlazor.Features.Theme;

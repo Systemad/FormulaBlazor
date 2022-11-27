@@ -74,16 +74,16 @@ public class ContentUrls
 public class Desktop
 {
     [JsonPropertyName("page")]
-    public Uri Page { get; set; }
+    public string Page { get; set; }
 
     [JsonPropertyName("revisions")]
-    public Uri Revisions { get; set; }
+    public string Revisions { get; set; }
 
     [JsonPropertyName("edit")]
-    public Uri Edit { get; set; }
+    public string Edit { get; set; }
 
     [JsonPropertyName("talk")]
-    public Uri Talk { get; set; }
+    public string Talk { get; set; }
 }
 
 public class Namespace
@@ -98,7 +98,7 @@ public class Namespace
 public class Originalimage
 {
     [JsonPropertyName("source")]
-    public Uri Source { get; set; }
+    public string Source { get; set; }
 
     [JsonPropertyName("width")]
     public long Width { get; set; }

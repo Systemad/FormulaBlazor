@@ -1,0 +1,29 @@
+﻿@page "/circuits"
+<PageTitle>Circuits</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudPaper Class="rounded-lg pa-4" Height="100" Elevation="6">
+        @if (CircuitList.Any())
+        {
+            @foreach (var circuit in CircuitList)
+            {
+                   
+            }
+        }
+        <MudGrid Spacing="4" Justify="Justify.Center">
+            @for (var i = 0; i < 9; i++)
+            {
+                <MudItem>
+                    <CircuitCard/>
+                </MudItem>   
+            }
+        </MudGrid>
+    </MudPaper>
+</MudContainer>
+
+@***
+            else
+            {
+                <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="200px" Height="110px" />
+            }
+***@

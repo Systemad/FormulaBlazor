@@ -10,7 +10,7 @@ public interface IWikiBaseClient
     /// Fetch summary of Wikipedia page
     /// OBS: Case sensitive!!!
     /// </summary>
-    /// <param name="driver"></param>
+    /// <param name="title">Title of Wikipedia page, as in URL</param>
     /// <returns>WikipediaSummary object</returns>
-    Task<WikipediaSummary> GetDriverSummary(string driver);
+    Task<WikipediaSummary> WikiSummary(string title);
 }

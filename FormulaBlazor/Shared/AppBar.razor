@@ -1,23 +1,21 @@
 ﻿@inject NavigationManager Navigation
-
-<MudAppBar Color="Color.Transparent" Fixed="true" Bottom="false" Elevation="0">
-    <MudSpacer/>
-    <MudTabs Elevation="2"  Rounded="true" Centered="true" Color="Color.Dark">
+<MudSpacer/>
+    <MudTabs Elevation="4" Rounded="true" Centered="true">
         <MudTabPanel Icon="@Icons.Material.Filled.Home" Text="Home" OnClick="() => Navigate(Links.Home)"/>
         <MudTabPanel Icon="@Icons.Material.Filled.Person" Text="Drivers" OnClick="() => Navigate(Links.Drivers)"/>
         <MudTabPanel Icon="@Icons.Material.Filled.Group" Text="Teams" OnClick="() => Navigate(Links.Teams)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.CalendarMonth" Text="Calendar" OnClick="() => Navigate(Links.Calendar)" Disabled="true"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.CalendarMonth" Text="Calendar" OnClick="() => Navigate(Links.Schedule)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.Calculate" Text="Circuit" OnClick="() => Navigate(Links.Circuits)"/>
         @if (_themeService.IsDarkMode)
         {
-            <MudTabPanel Variant="Variant.Filled" Icon="@Icons.Material.Filled.DarkMode" OnClick="ToggleTheme"/>
+            <MudTabPanel Variant="Variant.Filled" Icon="@Icons.Material.Filled.DarkMode" OnClick="@_themeService.ToggleDarkMode"/>
         }
         else
         {
-            <MudTabPanel Variant="Variant.Filled" Icon="@Icons.Material.Filled.LightMode" OnClick="ToggleTheme"/>
+            <MudTabPanel Variant="Variant.Filled" Icon="@Icons.Material.Filled.LightMode" OnClick="@_themeService.ToggleDarkMode"/>
         }
     </MudTabs>
-    <MudSpacer/>
-</MudAppBar>
+<MudSpacer/>
 
 @code{
     

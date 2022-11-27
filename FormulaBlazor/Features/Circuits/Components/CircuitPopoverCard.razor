@@ -1,0 +1,52 @@
+﻿@using FormulaBlazor.Features.Common.Wikipedia
+@using FormulaBlazor.Features.Circuits.Models
+@if (Summary != null && CircuitElement != null)
+{
+    <MudItem xs="6">
+        <MudCardMedia
+            Image="@Summary.Thumbnail.Source"/>
+    </MudItem>
+    <MudItem xs="6">
+        <MudCardContent>
+            <MudText Typo="Typo.h3">@CircuitElement.CircuitName</MudText>
+            <MudText Typo="Typo.body2">@Summary.Extract</MudText>
+            <MudText Typo="Typo.body2">Source: Wikipedia</MudText>
+        </MudCardContent>
+        <MudCardActions>
+            <MudLink Href="@(Summary != null ? Summary.ContentUrls.Desktop.Page : "#")" Target="_blank">Learn more</MudLink>
+            <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="OnCloseClick">Close</MudButton>
+        </MudCardActions>
+    </MudItem>   
+}
+else
+{
+    <MudItem xs="6">
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="275px" Height="80%" />
+    </MudItem>
+    <MudItem xs="6">
+        <MudCardContent>
+            <MudSkeleton />
+            <MudSkeleton />
+            <MudSkeleton />
+        </MudCardContent>
+        <MudCardActions>
+            <MudSkeleton />
+            <MudSkeleton />
+        </MudCardActions>
+    </MudItem> 
+}
+
+@code {
+
+    [Inject] private IWikiBaseClient _wikiBaseClient { get; set; }
+    [Parameter] public WikipediaSummary? Summary { get; set; }
+    [Parameter] public CircuitElement? CircuitElement { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnCloseClick { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Summary = await _wikiBaseClient.WikiSummary(CircuitElement.CircuitName);
+        await base.OnInitializedAsync();
+    }
+
+}

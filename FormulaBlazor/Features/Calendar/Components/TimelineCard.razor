@@ -1,0 +1,35 @@
+﻿@using FormulaBlazor.Features.Calendar.Models
+@using System.Globalization
+<MudTimelineItem Size="Size.Medium" Color="@(Race.IsDone ? Color.Success : Color.Error)" Elevation="0">
+    <MudCard Outlined="true" Elevation="@(true ? 5 : 0)">
+        <MudPaper Class="d-flex justify-space-around">
+            <MudCardContent Class="Width: 450px; flex: 1">
+                <MudText Typo="Typo.h6">@Race.Country</MudText>
+                <MudText Typo="Typo.body1">Track: @Race.CircuitName</MudText>
+                <MudText Typo="Typo.body1">Time: @Race.Date</MudText>
+                <MudText Typo="Typo.body1">Learn more about the track</MudText>
+            </MudCardContent>
+            <MudDivider DividerType="DividerType.Middle" Vertical="true" FlexItem="true"/>
+            <MudCardContent Class="Width: 450px; flex: 1">
+                <MudText Typo="Typo.h6">Schedule</MudText>
+                <MudText Typo="Typo.body1">Free pratice 1: @Race.FirstPractice.ToLocalTime()</MudText>
+                <MudText Typo="Typo.body1">Free pratice 2: @Race.SecondPractice.ToLocalTime()</MudText>
+                @if (Race.ThirdPractice is not null)
+                {
+                    <MudText Typo="Typo.body1">Free pratice 3: @Race.ThirdPractice?.ToLocalTime()</MudText>    
+                }
+                
+                @if (Race.Sprint is not null)
+                {
+                    <MudText Typo="Typo.body1">Sprint: @Race.Sprint?.ToLocalTime()</MudText>
+                }
+                <MudText Typo="Typo.body1">Qualifier: @Race.Qualifying.ToLocalTime()</MudText>
+                <MudText Typo="Typo.body1">Race: @Race.Date.ToLocalTime()</MudText>
+            </MudCardContent>
+        </MudPaper>
+    </MudCard>
+</MudTimelineItem>
+
+@code {
+    [Parameter] public RaceDto Race { get; set; }
+}

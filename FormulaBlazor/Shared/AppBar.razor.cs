@@ -5,11 +5,12 @@ namespace FormulaBlazor.Shared;
 
 public partial class AppBar
 {
-    [Inject] private ThemeService _themeService { get; set; }
-    
+    [Inject]
+    private ThemeService _themeService { get; set; }
+
     private void ToggleTheme()
     {
         _themeService.ToggleDarkMode();
-        StateHasChanged();
+        //StateHasChanged();
     }
 }

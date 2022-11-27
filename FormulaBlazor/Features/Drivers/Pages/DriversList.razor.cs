@@ -24,8 +24,6 @@ public partial class DriversList : ComponentBase
     private int selectedRowNumber = -1;
     private DriverDto? _selectedDriver;
 
-    private WikipediaSummary? WikipediaSummary = new();
-
     //private bool driverSelected = _selectedDriver == null;
 
     private bool _popOverOpen = false;
@@ -34,7 +32,7 @@ public partial class DriversList : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        //await InitializeDriverStandings();
+        await InitializeDriverStandings();
         await base.OnInitializedAsync();
     }
 
@@ -52,15 +50,11 @@ public partial class DriversList : ComponentBase
     {
         if (_selectedDriver == null)
         {
-            WikipediaSummary = await _wikiBaseClient.GetDriverSummary(
-                driver.Item.GivenName + "_" + driver.Item.FamilyName
-            );
             _selectedDriver = driver.Item;
             _popOverOpen = true;
         }
         else
         {
-            WikipediaSummary = null;
             _selectedDriver = null;
             _popOverOpen = false;
         }
@@ -87,5 +81,11 @@ public partial class DriversList : ComponentBase
             //StateHasChanged();
             return string.Empty;
         }
+    }
+
+    private void ClosePopover()
+    {
+        selectedRowNumber = -1;
+        _popOverOpen = false;
     }
 }

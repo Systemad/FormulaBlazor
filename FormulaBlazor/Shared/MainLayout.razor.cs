@@ -6,11 +6,15 @@ namespace FormulaBlazor.Shared;
 
 public partial class MainLayout : LayoutComponentBase
 {
-    [Inject] private ThemeService _themeService { get; set; }
+    [Inject]
+    private ThemeService _themeService { get; set; }
 
-    protected override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         _themeService.SetTheme(Theme.MainTheme());
-        return base.OnInitializedAsync();
+        _themeService.MajorUpdateOccured += LayoutServiceOnMajorUpdateOccured;
+        base.OnInitialized();
     }
+
+    private void LayoutServiceOnMajorUpdateOccured(object sender, EventArgs e) => StateHasChanged();
 }

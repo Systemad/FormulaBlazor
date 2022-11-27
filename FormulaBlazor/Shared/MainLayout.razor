@@ -1,11 +1,12 @@
 ﻿@inherits LayoutComponentBase
-
 <MudThemeProvider Theme="@_themeService.Theme" IsDarkMode="@_themeService.IsDarkMode" IsDarkModeChanged="@_themeService.SetDarkMode" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <AppBar/>
+    <MudAppBar Color="Color.Transparent" Fixed="true" Bottom="false" Elevation="0">
+        <AppBar/>
+    </MudAppBar>
     <MudMainContent Class="mt-2">
         @Body
     </MudMainContent>
