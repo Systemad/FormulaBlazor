@@ -7,23 +7,16 @@
         {
             @foreach (var circuit in CircuitList)
             {
-                   
+                <CircuitCard CircuitElement="circuit" OnNavigateToWikipedia="() => NavigateToCircuitWikipedia(circuit.Url)"/>
             }
         }
         <MudGrid Spacing="4" Justify="Justify.Center">
             @for (var i = 0; i < 9; i++)
             {
                 <MudItem>
-                    <CircuitCard/>
+                    <CircuitCard OnNavigateToWikipedia="() => NavigateToCircuitWikipedia('a'.ToString())"/>
                 </MudItem>   
             }
         </MudGrid>
     </MudPaper>
 </MudContainer>
-
-@***
-            else
-            {
-                <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="200px" Height="110px" />
-            }
-***@

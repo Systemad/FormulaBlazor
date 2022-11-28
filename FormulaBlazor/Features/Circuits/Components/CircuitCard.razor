@@ -1,18 +1,23 @@
 ﻿@using FormulaBlazor.Features.Circuits.Models
 <MudCard>
-    <MudCardMedia Image="images/door.jpg" Height="200" />
+    <MudCardMedia Image="@circuitLocation" Height="200" />
     <MudCardContent>
-        <MudText Typo="Typo.h5">Old Paint</MudText>
+        <MudText Typo="Typo.h5">@CircuitElement.CircuitName</MudText>
         <MudText Typo="Typo.body2">Old paint found on a stone house door.</MudText>
         <MudText Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
     </MudCardContent>
     <MudCardActions>
-        <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
+        <MudButton Variant="Variant.Text" Color="Color.Primary" OnClick="OnNavigateToWikipedia">Learn More</MudButton>
     </MudCardActions>
 </MudCard>
 
 @code {
-
+    
     [Parameter] public CircuitElement CircuitElement { get; set; }
-    // FETCH WIKIPEDIA URL??
+    [Inject] private NavigationManager _navigationManager { get; set; }
+    private string circuitLocation => "images/circuits" + CircuitElement.CircuitId;
+    
+    [Parameter] public EventCallback<MouseEventArgs> OnNavigateToWikipedia { get; set; }
+
+    //private void NavigateToWikipedia(MouseEventArgs arg) // => OnNavigateToWikipedia.InvokeAsync(url);
 }

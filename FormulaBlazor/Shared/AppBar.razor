@@ -1,11 +1,10 @@
 ﻿@inject NavigationManager Navigation
 <MudSpacer/>
     <MudTabs Elevation="4" Rounded="true" Centered="true">
-        <MudTabPanel Icon="@Icons.Material.Filled.Home" Text="Home" OnClick="() => Navigate(Links.Home)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.Person" Text="Drivers" OnClick="() => Navigate(Links.Drivers)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.Group" Text="Teams" OnClick="() => Navigate(Links.Teams)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.StackedBarChart" Text="Standings" OnClick="() => Navigate(Links.Standings)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.Calculate" Text="Circuits" OnClick="() => Navigate(Links.Circuits)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.Newspaper" Text="News" OnClick="() => Navigate(Links.Schedule)"/>
         <MudTabPanel Icon="@Icons.Material.Filled.CalendarMonth" Text="Calendar" OnClick="() => Navigate(Links.Schedule)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.Calculate" Text="Circuit" OnClick="() => Navigate(Links.Circuits)"/>
         @if (_themeService.IsDarkMode)
         {
             <MudTabPanel Variant="Variant.Filled" Icon="@Icons.Material.Filled.DarkMode" OnClick="@_themeService.ToggleDarkMode"/>

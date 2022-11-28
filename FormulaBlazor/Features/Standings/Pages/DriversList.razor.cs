@@ -5,7 +5,7 @@ using FormulaBlazor.Features.Drivers.Models;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace FormulaBlazor.Features.Drivers.Pages;
+namespace FormulaBlazor.Features.Standings.Pages;
 
 public partial class DriversList : ComponentBase
 {

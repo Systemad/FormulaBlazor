@@ -22,9 +22,9 @@ public partial class Circuits
 
     private async Task InitializeCircuits()
     {
-        var data = await _client.GetAsync<Response<MrData>>("circuits.json");
+        var data = await _client.GetAsync<Response<MrData>>($"{DateTime.Now.Year}/circuits.json");
         CircuitList = data.Root.CircuitTable.Circuits;
     }
 
-    private void NavigateToCircuit(string circuitId) => _navigation.NavigateTo("/circuitId");
+    private void NavigateToCircuitWikipedia(string circuitId) => _navigation.NavigateTo(circuitId);
 }
