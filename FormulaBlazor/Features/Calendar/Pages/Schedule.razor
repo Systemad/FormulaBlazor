@@ -1,16 +1,28 @@
-﻿@page "/schedule"
+﻿@page "/"
+@page "/schedule"
 
 <PageTitle>Schedule</PageTitle>
 
 
 <MudContainer MaxWidth="MaxWidth.Medium" Class="pa-4">
     <MudPaper Class="rounded-lg pa-2" Height="100" Elevation="6">
-        <MudTimeline TimelinePosition="TimelinePosition.Start" DisableModifiers="false">
+        <MudSelect T="int"
+                   Value="@SelectSeason"
+                   ValueChanged="OnSelectSeasonChanged"
+                   Label="Season / Year"
+                   LockScroll="true" Variant="Variant.Outlined"
+                   AnchorOrigin="Origin.BottomCenter">
+            @foreach(var season in SeasonList)
+            {
+                <MudSelectItem T="int" Value="@season"/>   
+            }
+        </MudSelect>
+        <MudTimeline Class="mt-4" TimelinePosition="TimelinePosition.Start" DisableModifiers="false">
             @if (RaceTable is not null)
             {
                 @foreach (var race in RaceTable.Races)
                 {
-                    <TimelineCard Race="race"/>
+                    <TimelineCard OnNavigateResult="() => NavigateToResult(race.Date.Year.ToString(), race.Round)" Race="race"/>
                 }
             }
         </MudTimeline>

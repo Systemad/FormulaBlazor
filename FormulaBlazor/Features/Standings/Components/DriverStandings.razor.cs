@@ -5,9 +5,9 @@ using FormulaBlazor.Features.Drivers.Models;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace FormulaBlazor.Features.Standings.Pages;
+namespace FormulaBlazor.Features.Standings.Components;
 
-public partial class DriversList : ComponentBase
+public partial class DriverStandings
 {
     [Inject]
     private IBaseErgastClient _client { get; set; }

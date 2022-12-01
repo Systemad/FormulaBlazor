@@ -1,7 +1,4 @@
-﻿@page "/standings"
-@using FormulaBlazor.Features.Drivers.DTO
-<PageTitle>Drivers</PageTitle>
-@** @ref="mudTable"**@
+﻿@using FormulaBlazor.Features.Drivers.DTO
 <MudPaper Class="pa-6" MinHeight="90vh" Height="90vh" Elevation="4">
     <MudTable Items="@_driverStanding.DriverStanding"
               Hover="true" Breakpoint="Breakpoint.Sm"
@@ -25,7 +22,6 @@
             <MudTd DataLabel="Constructor">@context.Constructor</MudTd>
         </RowTemplate>
     </MudTable>
-    
     
     <MudPopover Open="_popOverOpen" TransformOrigin="@Origin.CenterCenter" AnchorOrigin="@Origin.CenterCenter"
                 Elevation="4" Class="pa-4">

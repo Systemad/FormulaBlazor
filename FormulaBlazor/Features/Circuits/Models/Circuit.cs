@@ -3,7 +3,7 @@ using FormulaBlazor.Features.Common.Ergast;
 
 namespace FormulaBlazor.Features.Circuits.Models;
 
-public class Circuit : MrDataRoot
+public class Circuit
 {
     [JsonPropertyName("MRData")]
     public MrData MrData { get; set; }

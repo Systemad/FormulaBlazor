@@ -2,9 +2,9 @@
 <MudSpacer/>
     <MudTabs Elevation="4" Rounded="true" Centered="true">
         <MudTabPanel Icon="@Icons.Material.Filled.StackedBarChart" Text="Standings" OnClick="() => Navigate(Links.Standings)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.Calculate" Text="Circuits" OnClick="() => Navigate(Links.Circuits)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.Newspaper" Text="News" OnClick="() => Navigate(Links.Schedule)"/>
         <MudTabPanel Icon="@Icons.Material.Filled.CalendarMonth" Text="Calendar" OnClick="() => Navigate(Links.Schedule)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.Calculate" Text="Circuits" OnClick="() => Navigate(Links.Circuits)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.Newspaper" Text="News" OnClick="() => Navigate(Links.News)"/>
         @if (_themeService.IsDarkMode)
         {
             <MudTabPanel Variant="Variant.Filled" Icon="@Icons.Material.Filled.DarkMode" OnClick="@_themeService.ToggleDarkMode"/>

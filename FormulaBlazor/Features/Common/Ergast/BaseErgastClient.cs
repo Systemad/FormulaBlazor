@@ -3,12 +3,6 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace FormulaBlazor.Features.Common.Ergast;
 
-/* Add Caching
- *  Dictionary<string, MrData> CacheString = new() |||| USE IMEMORYCACHE
- *  https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-7.0
- *  in GetAsync, look up string in Dictionary, if it exist, just return object
- *  if it doesn't exist, fetch and create new entry in Dictionary
- */
 public class BaseErgastClient : IBaseErgastClient
 {
     private readonly IMemoryCache _memoryCache;

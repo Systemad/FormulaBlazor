@@ -14,6 +14,7 @@
     </ItemGroup>
     
     <ItemGroup>
+      <Folder Include="Features\Results\Components" />
       <Folder Include="Features\Teams\Components" />
       <Folder Include="wwwroot\css" />
     </ItemGroup>
