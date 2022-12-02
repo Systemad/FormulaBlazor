@@ -1,10 +1,32 @@
-﻿
-@inject NavigationManager NavManager
+﻿@page "/"
 
-@code {
 
-    protected override void OnInitialized()
-    {
-        NavManager.NavigateTo("/schedule");
-    }
-}
+<MudContainer Class="pa-4" MaxWidth="MaxWidth.Large">
+    <MudGrid>
+        <MudItem xs="12" sm="6" md="4">
+            <DriverStandingMinicard Drivers="@DriverStandingsRoot.MrData.StandingsTable.StandingsLists"/>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <ConstructorStandingMinicard/>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="4">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 300px;">
+                Calendar
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 300px;">
+                        Latest News
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
+                Previous Race stats, winner to top 5
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudContainer>

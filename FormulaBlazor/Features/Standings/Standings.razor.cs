@@ -1,4 +1,4 @@
-﻿namespace FormulaBlazor.Features.Standings.Pages;
+﻿namespace FormulaBlazor.Features.Standings;
 
 public partial class Standings
 {

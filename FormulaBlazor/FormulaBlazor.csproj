@@ -15,8 +15,8 @@
     
     <ItemGroup>
       <Folder Include="Features\Results\Components" />
-      <Folder Include="Features\Teams\Components" />
       <Folder Include="wwwroot\css" />
+      <Folder Include="wwwroot\images" />
     </ItemGroup>
     
     <ItemGroup>
@@ -27,6 +27,48 @@
     
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\scripts\timezone.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\albert_park.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\americas.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\bahrain.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\baku.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\catalunya.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\hungaroring.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\imola.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\interlagos.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\jeddah.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\miami.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\monaco.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\monza.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\red_bull_ring.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\ricard.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\rodriguez.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\silverstone.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\sing.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\spa.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\suzuka.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\villeneuve.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\yas_marina.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\circuits\zandvoort.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\australia.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\austria.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\azerbaijan.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\bahrain.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\belgium.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\brazil.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\canada.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\france.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\hungary.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\italy.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\japan.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\mexico.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\monaco.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\netherlands.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\saudi arabia.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\singapore.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\spain.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\uae.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\uk.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\countries\usa.png" />
     </ItemGroup>
 
 </Project>

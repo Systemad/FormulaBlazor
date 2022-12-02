@@ -5,7 +5,7 @@ using FormulaBlazor.Features.Drivers.Models;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace FormulaBlazor.Features.Standings.Components;
+namespace FormulaBlazor.Features.Constructors.Pages;
 
 public partial class ConstructorStandings
 {
@@ -40,8 +40,8 @@ public partial class ConstructorStandings
     {
         _loading = true;
         _selectedDriver = null;
-        var data = await _client.GetAsync<Response<MRData>>("current/driverStandings.json");
-        var oldStand = data.Root.DriverStandingsTable.StandingsLists[0];
+        var data = await _client.GetAsync<DriverStandingsRoot>("current/driverStandings.json");
+        var oldStand = data.MrData.StandingsTable.StandingsLists[0];
         _driverStanding = oldStand.MapToDriverList();
         _loading = false;
     }

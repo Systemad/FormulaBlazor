@@ -1,6 +1,7 @@
 ﻿@inject NavigationManager Navigation
 <MudSpacer/>
     <MudTabs Elevation="4" Rounded="true" Centered="true">
+        <MudTabPanel Icon="@Icons.Material.Filled.Home" Text="Home" OnClick="() => Navigate(Links.Home)"/>
         <MudTabPanel Icon="@Icons.Material.Filled.StackedBarChart" Text="Standings" OnClick="() => Navigate(Links.Standings)"/>
         <MudTabPanel Icon="@Icons.Material.Filled.CalendarMonth" Text="Calendar" OnClick="() => Navigate(Links.Schedule)"/>
         <MudTabPanel Icon="@Icons.Material.Filled.Calculate" Text="Circuits" OnClick="() => Navigate(Links.Circuits)"/>

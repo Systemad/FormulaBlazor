@@ -1,0 +1,31 @@
+﻿@using FormulaBlazor.Features.Constructors.Models
+
+<MudPaper Elevation="2" Class="pa-4" Style="height: 300px; overflow: hidden">
+    <MudText Typo="Typo.h6">
+        Constructor Standings
+    </MudText>
+    <MudDivider/>
+    <MudList>
+        @foreach (var con in Constructors)
+        {
+            <MudListItem Dense="true" DisableGutters="true" Avatar="images/drivers/alonso.png">
+                <div class="d-flex justify-space-between">
+                    <MudText>@con.Constructor.Name</MudText>
+                    <MudText>@con.Points</MudText>
+                </div>
+                <MudText Typo="Typo.body2">@con.Constructor.Nationality</MudText>
+            </MudListItem>
+        }
+    </MudList>
+    <div class="d-flex justify-end">
+        <MudButton Variant="Variant.Text" EndIcon="@Icons.Material.Filled.ArrowRight">
+            See complete standings
+        </MudButton>
+    </div>
+</MudPaper>
+
+@code
+{
+    [Parameter] public StandingsTable ConstructorStandingsTable { get; set; }
+    private List<ConstructorStanding> Constructors => ConstructorStandingsTable.StandingsLists[1].ConstructorStandings.Take(3).ToList();
+}
