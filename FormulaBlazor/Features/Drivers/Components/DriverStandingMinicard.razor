@@ -1,30 +1,48 @@
 ﻿@using FormulaBlazor.Features.Drivers.Models
-<MudPaper Elevation="2" Class="pa-4" Style="height: 300px; overflow: hidden">
-    <MudText Typo="Typo.h6">
-        Driver Standings Season @DriverStandingsTable.Season
-    </MudText>
-    <MudDivider/>
-    <MudList>
-        @foreach (var driver in Drivers)
-        {
-            <MudListItem Dense="true" DisableGutters="true" Avatar="images/drivers/alonso.png">
-                <div class="d-flex justify-space-between">
-                    <MudText>@driver.Driver.GivenName @driver.Driver.FamilyName</MudText>
-                    <MudText>@driver.Points</MudText>
-                </div>
-                <MudText Typo="Typo.body2">@driver.Constructors[1].Name</MudText>
-            </MudListItem>
-        }
-    </MudList>
-    <div class="d-flex justify-end">
-        <MudButton Variant="Variant.Text" EndIcon="@Icons.Material.Filled.ArrowRight">
-            See complete standings
-        </MudButton>
-    </div>
-</MudPaper>
+@using FormulaBlazor.Features.Constructors.Models
+@if (DriverStandingsList is not null)
+{
+    <MudPaper Elevation="2" Class="pa-4" Style="height: 300px; overflow: hidden">
+        <MudText Typo="Typo.h6">
+            Driver Standings Season @DriverStandingsList.Season
+        </MudText>
+        <MudDivider/>
+        <MudList>
+            @foreach (var driver in Drivers)
+            {
+                <MudListItem Dense="true" DisableGutters="true">
+                    <div class="d-flex justify-space-between">
+                        <div>
+                            <MudAvatar Image="@ImageSource(driver.Driver.DriverId)"/>
+                        </div>
+                        <div>
+                            <MudText>@driver.Driver.GivenName @driver.Driver.FamilyName</MudText>
+                            <MudText>@driver.Points</MudText>
+                        </div>
+                        <div>
+                            <MudText Typo="Typo.body2">@driver.Constructors[0].Name</MudText>
+                        </div>
+                    </div>
+                </MudListItem>
+            }
+        </MudList>
+        <div class="d-flex justify-end">
+            <MudButton Variant="Variant.Text" EndIcon="@Icons.Material.Filled.ArrowRight">
+                See complete standings
+            </MudButton>
+        </div>
+    </MudPaper>   
+}
+else
+{
+    <MinicardSkeleton/>
+}
 
 @code
 {
-    [Parameter] public StandingsTable DriverStandingsTable { get; set; }
-    private List<DriverStanding> Drivers => DriverStandingsTable.StandingsLists[1].DriverStandings.Take(3).ToList();
+    [Parameter] public DriverStandingsList? DriverStandingsList { get; set; }
+    private List<DriverStanding> Drivers => DriverStandingsList.DriverStandings.Take(3).ToList();
+
+    private static string ImageSource(string source) =>  $"images/drivers/{source}.png";  
+     
 }

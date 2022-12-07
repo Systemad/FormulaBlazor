@@ -1,18 +1,15 @@
 ﻿@page "/"
 
-
 <MudContainer Class="pa-4" MaxWidth="MaxWidth.Large">
     <MudGrid>
         <MudItem xs="12" sm="6" md="4">
-            <DriverStandingMinicard Drivers="@DriverStandingsRoot.MrData.StandingsTable.StandingsLists"/>
+            @*** <DriverStandingMinicard DriverStandingsList="@DriverStandingsList"/> ***@
         </MudItem>
         <MudItem xs="12" sm="6" md="4">
-            <ConstructorStandingMinicard/>
+            @*** <ConstructorStandingMinicard ConstructorStandingsList="@ConstructorStandingList" /> ***@
         </MudItem>
         <MudItem xs="12" sm="12" md="4">
-            <MudPaper Elevation="2" Class="pa-4" Style="height: 300px;">
-                Calendar
-            </MudPaper>
+            @*** <CalendarMinicard RaceTable="RaceTable" /> ***@
         </MudItem>
         <MudItem xs="12" sm="6">
             <MudGrid>

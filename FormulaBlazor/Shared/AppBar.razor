@@ -1,11 +1,10 @@
-﻿@inject NavigationManager Navigation
-<MudSpacer/>
-    <MudTabs Elevation="4" Rounded="true" Centered="true">
-        <MudTabPanel Icon="@Icons.Material.Filled.Home" Text="Home" OnClick="() => Navigate(Links.Home)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.StackedBarChart" Text="Standings" OnClick="() => Navigate(Links.Standings)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.CalendarMonth" Text="Calendar" OnClick="() => Navigate(Links.Schedule)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.Calculate" Text="Circuits" OnClick="() => Navigate(Links.Circuits)"/>
-        <MudTabPanel Icon="@Icons.Material.Filled.Newspaper" Text="News" OnClick="() => Navigate(Links.News)"/>
+﻿<MudSpacer/>
+    <MudTabs Elevation="4" Rounded="true" Centered="true" @ref="tabs">
+        <MudTabPanel Icon="@Icons.Material.Filled.Home" Text="Home" ID="@(Links.Home)" OnClick="() => Navigate(Links.Home)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.StackedBarChart" Text="Standings" ID="@(Links.Standings)" OnClick="() => Navigate(Links.Standings)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.CalendarMonth" Text="Calendar" ID="@(Links.Schedule)" OnClick="() => Navigate(Links.Schedule)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.Calculate" Text="Circuits" ID="@(Links.Circuits)" OnClick="() => Navigate(Links.Circuits)"/>
+        <MudTabPanel Icon="@Icons.Material.Filled.Newspaper" Text="News" ID="@(Links.News)" OnClick="() => Navigate(Links.News)"/>
         @if (_themeService.IsDarkMode)
         {
             <MudTabPanel Variant="Variant.Filled" Icon="@Icons.Material.Filled.DarkMode" OnClick="@_themeService.ToggleDarkMode"/>
@@ -19,18 +18,55 @@
 
 @code{
     
+    [Inject] NavigationManager Navigation { get; set; }
+    [Inject] ILogger<AppBar> Logger { get; set; }
+    
+    private MudTabs tabs;
     private int _panelIndex = 0;
     
-    private void Navigate(string link)
+    protected override void OnInitialized()
     {
-        _panelIndex = link switch
-        {
-            "driver" => 0,
-            "teams" => 1,
-            "calendar" => 2,
-            _ => _panelIndex
-            };
-        Navigation.NavigateTo(link);
+        Navigation.LocationChanged += HandleLocationChanged;
+        Activate();
     }
 
+    /*
+    protected override void OnParametersSet()
+    {
+        var uri = Navigation.ToAbsoluteUri(Navigation.Uri);
+        Navigate(uri.AbsolutePath);
+        base.OnParametersSet();
+    }
+    */
+    
+    private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        Logger.LogInformation("URL of new location: {Location}", e.Location);
+        Activate();
+    }
+    
+/*
+    protected override void OnInitialized()
+    {
+        var uri = Navigation.ToAbsoluteUri(Navigation.Uri);
+        Navigate(uri.AbsolutePath);
+        base.OnInitialized();
+    }
+*/
+    /*
+    protected override void OnAfterRender(bool firstRender)
+    {
+        var uri = Navigation.ToAbsoluteUri(Navigation.Uri);
+        Navigate(uri.AbsolutePath);
+        base.OnAfterRender(firstRender);
+    }
+    */
+
+    private void Activate()
+    {
+        var uri = Navigation.ToAbsoluteUri(Navigation.Uri);
+        var absolutePath = uri.AbsolutePath;
+        tabs.ActivatePanel(absolutePath);
+    }
+    private void Navigate(string link) => Navigation.NavigateTo(link);
 }

@@ -38,10 +38,10 @@ public class StandingsTable
     public string Season { get; set; }
 
     [JsonPropertyName("StandingsLists")]
-    public List<StandingsList> StandingsLists { get; set; }
+    public List<DriverStandingsList> StandingsLists { get; set; }
 }
 
-public class StandingsList
+public class DriverStandingsList
 {
     [JsonPropertyName("season")]
     public string Season { get; set; }

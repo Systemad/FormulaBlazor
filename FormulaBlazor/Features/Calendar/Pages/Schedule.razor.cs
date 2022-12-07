@@ -3,7 +3,6 @@ using FormulaBlazor.Features.Calendar.Models;
 using FormulaBlazor.Features.Common.Ergast;
 using FormulaBlazor.Utilities;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 
 namespace FormulaBlazor.Features.Calendar.Pages;
 
@@ -27,8 +26,8 @@ public partial class Schedule
 
     private async Task FetchScheduleForSeason(int year)
     {
-        var data = await _client.GetAsync<Response<MrData>>($"{year}.json");
-        var oldStand = data.Root.RaceTable;
+        var data = await _client.GetAsync<CalendarRoot>($"{year}.json");
+        var oldStand = data.MrData.RaceTable;
         RaceTable = oldStand.MapScheduleDto();
         StateHasChanged();
     }
@@ -39,8 +38,8 @@ public partial class Schedule
         string text = await File.ReadAllTextAsync(
             "C:\\Users\\yeahg\\RiderProjects\\FormulaBlazor\\FormulaBlazor\\Resources\\schedule.json"
         );
-        var textSeriialize = JsonSerializer.Deserialize<Response<MrData>>(text);
-        var oldStand = textSeriialize.Root.RaceTable;
+        var textSeriialize = JsonSerializer.Deserialize<CalendarRoot>(text);
+        var oldStand = textSeriialize.MrData.RaceTable;
         RaceTable = oldStand.MapScheduleDto();
     }
 

@@ -1,0 +1,28 @@
+﻿<MudPaper Elevation="2" Class="pa-4" Style="height: 300px; overflow: hidden">
+    <MudText Typo="Typo.h6">
+        <MudSkeleton Animation="Animation.Wave" Height="25px" Width="40%" />
+    </MudText>
+    <MudDivider/>
+    <MudList>
+        @for(var i = 0; i< 3; i++)
+        {
+            <MudListItem Dense="true" DisableGutters="true">
+                <div class="d-flex justify-space-between">
+                    <div>
+                        <MudSkeleton SkeletonType="SkeletonType.Circle" Width="50px" Height="50px" />
+                    </div>
+                    <div>
+                        <MudSkeleton Animation="Animation.Wave" Width="215px"/>
+                        <MudSkeleton Animation="Animation.Wave" Width="215px"/>
+                    </div>
+                    <div>
+                        <MudSkeleton Animation="Animation.Wave" Width="50px"/>
+                    </div>
+                </div>
+            </MudListItem>
+        }
+    </MudList>
+    <div class="d-flex justify-end">
+        <MudSkeleton Width="64px" Height="40px" Class="ml-2" />
+    </div>
+</MudPaper>

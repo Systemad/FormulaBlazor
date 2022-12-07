@@ -2,7 +2,7 @@
 
 namespace FormulaBlazor.Features.Constructors.Models;
 
-public class ContructorStandingRoot
+public class ConstructorStandingRoot
 {
     [JsonPropertyName("MRData")]
     public MrData MrData { get; set; }
@@ -38,10 +38,10 @@ public class StandingsTable
     public string Season { get; set; }
 
     [JsonPropertyName("StandingsLists")]
-    public List<StandingsList> StandingsLists { get; set; }
+    public List<ConstructorStandingsList> StandingsLists { get; set; }
 }
 
-public class StandingsList
+public class ConstructorStandingsList
 {
     [JsonPropertyName("season")]
     public string Season { get; set; }

@@ -1,0 +1,21 @@
+﻿<MudPaper Elevation="2" Class="pa-4" Style="height: 300px; overflow: hidden">
+    <MudText Typo="Typo.h6">
+        <MudSkeleton Animation="Animation.Wave" Width="40%" />
+    </MudText>
+    <MudDivider/>
+    <MudList>
+       @for(var i = 0; i< 3; i++)
+        {
+            <MudListItem Dense="true" DisableGutters="true" Avatar="images/drivers/alonso.png">
+                <div class="d-flex justify-space-between">
+                    <MudSkeleton Animation="Animation.Wave" Width="40%" />
+                    <MudSkeleton Animation="Animation.Wave" Width="5%" />
+                </div>
+                <MudSkeleton Animation="Animation.Wave" Width="20%" />
+            </MudListItem>
+        }
+    </MudList>
+    <div class="d-flex justify-end">
+        <MudSkeleton Width="64px" Height="40px" Class="ml-2" />
+    </div>
+</MudPaper>

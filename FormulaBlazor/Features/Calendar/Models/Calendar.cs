@@ -1,10 +1,33 @@
 ﻿using System.Text.Json.Serialization;
-using FormulaBlazor.Features.Common.Ergast;
 
 namespace FormulaBlazor.Features.Calendar.Models;
 
-public class MrData : MrDataRoot
+public class CalendarRoot
 {
+    [JsonPropertyName("MRData")]
+    public MrData MrData { get; set; }
+}
+
+public class MrData
+{
+    [JsonPropertyName("xmlns")]
+    public string Xmlns { get; set; }
+
+    [JsonPropertyName("series")]
+    public string Series { get; set; }
+
+    [JsonPropertyName("url")]
+    public string Url { get; set; }
+
+    [JsonPropertyName("limit")]
+    public string Limit { get; set; }
+
+    [JsonPropertyName("offset")]
+    public string Offset { get; set; }
+
+    [JsonPropertyName("total")]
+    public string Total { get; set; }
+
     [JsonPropertyName("RaceTable")]
     public RaceTable RaceTable { get; set; }
 }
@@ -54,7 +77,7 @@ public class Race
     public FirstPractice Qualifying { get; set; }
 
     [JsonPropertyName("Sprint")]
-    public FirstPractice? Sprint { get; set; }
+    public FirstPractice Sprint { get; set; }
 }
 
 public class Circuit

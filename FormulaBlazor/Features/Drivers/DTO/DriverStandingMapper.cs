@@ -4,15 +4,15 @@ namespace FormulaBlazor.Features.Drivers.DTO;
 
 public static class DriverStandingMapper
 {
-    public static DriverStandingDto MapToDriverList(this StandingsList standing)
+    public static DriverStandingDto MapToDriverList(this DriverStandingsList driverStanding)
     {
         var newDriverStanding = new DriverStandingDto
         {
-            Round = standing.Round,
-            Season = standing.Season
+            Round = driverStanding.Round,
+            Season = driverStanding.Season
         };
 
-        var standings = standing.DriverStandings
+        var standings = driverStanding.DriverStandings
             .Select(
                 driver =>
                     new DriverDto
