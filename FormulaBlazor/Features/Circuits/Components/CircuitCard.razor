@@ -1,6 +1,7 @@
 ﻿@using FormulaBlazor.Features.Circuits.Models
+@using FormulaBlazor.Utilities
 <MudCard>
-    <MudCardMedia Image="@circuitLocation" Height="200" />
+    <MudCardMedia Image="@ImageUtilities.GetImageSource(ImageType.Circuits, CircuitElement.CircuitId)" Height="200" />
     <MudCardContent>
         <MudText Typo="Typo.h5">@CircuitElement.CircuitName</MudText>
         <MudText Typo="Typo.body2">Old paint found on a stone house door.</MudText>
@@ -15,8 +16,6 @@
     
     [Parameter] public CircuitElement CircuitElement { get; set; }
     [Inject] private NavigationManager _navigationManager { get; set; }
-    private string circuitLocation => "images/circuits" + CircuitElement.CircuitId;
-    
     [Parameter] public EventCallback<MouseEventArgs> OnNavigateToWikipedia { get; set; }
 
     //private void NavigateToWikipedia(MouseEventArgs arg) // => OnNavigateToWikipedia.InvokeAsync(url);

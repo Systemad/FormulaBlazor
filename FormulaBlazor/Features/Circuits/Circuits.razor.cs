@@ -12,11 +12,11 @@ public partial class Circuits
     [Inject]
     private NavigationManager _navigation { get; set; }
 
-    private List<CircuitElement> CircuitList { get; set; } = new();
+    private List<CircuitElement>? CircuitList { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        //await InitializeCircuits();
+        await InitializeCircuits();
         await base.OnInitializedAsync();
     }
 

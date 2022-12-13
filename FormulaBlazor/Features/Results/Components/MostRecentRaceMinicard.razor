@@ -1,0 +1,36 @@
+﻿@using FormulaBlazor.Features.Common.Ergast.Models
+ <MudPaper Elevation="2" Class="pa-4 overflow-x-scroll" Style="height: 300px;">
+     @if (RaceTable is not null)
+    {
+        <MudSimpleTable FixedHeader="true" Striped="true" Hover="true" Style="overflow-x: auto;">
+            <thead>
+            <tr>
+                @foreach (var h in headings)
+                {
+                    <th>@h</th>
+                }
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var x in RaceTable.Results)
+            {
+                <tr>
+                    <td>@x.Position</td>
+                    <td>@x.Driver.PermanentNumber</td>
+                    <td>@x.Driver.GivenName @x.Driver.FamilyName</td>
+                    <td>@x.Constructor.Name</td>
+                    <td>@x.Laps</td>
+                    <td>@(x.PositionText == "R" || x.Time is null ? "DNF" : x.Time.Time)</td>
+                    <td>@x.Points</td>
+                </tr>
+            }
+            </tbody>
+        </MudSimpleTable>   
+    }
+ </MudPaper>
+
+@code {
+    
+    [Parameter] public RaceWithResults? RaceTable { get; set; }
+    string[] headings = { "POS", "NO", "DRIVER", "CAR", "LAPS", "TIME/RETIRED", "PTS" };
+}

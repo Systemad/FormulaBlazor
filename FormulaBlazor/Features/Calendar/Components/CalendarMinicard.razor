@@ -5,13 +5,13 @@
 {
     @if (IsSeasonDone)
     {
-        <MudPaper Elevation="2" Class="pa-4" Style="height: 300px;">
+        <MudPaper Elevation="2" Class="pa-4 overflow-x-scroll" Style="height: 300px;">
             Season Done - Click below to view previous season schedule
         </MudPaper>
     }
     else
     {
-        <MudPaper Elevation="2" Class="pa-4" Style="height: 300px;">
+        <MudPaper Elevation="2" Class="pa-4 overflow-x-scroll" Style="height: 300px;">
             <MudText Typo="Typo.h6">
                 Schedule - Season @RaceTable.Season
             </MudText>
@@ -21,7 +21,7 @@
                 <MudListItem Dense="true" DisableGutters="true">
                     <div class="d-flex justify-space-between">
                         <div>
-                            <MudAvatar Image="@ImageUtilities.GetImageSource(ImageType.Driver, race.Country)"/>
+                            <MudAvatar Image="@ImageUtilities.GetImageSource(ImageType.Countries, race.Country)"/>
                         </div>
                         <div>
                             <MudText>@race.CircuitName</MudText>

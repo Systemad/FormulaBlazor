@@ -3,20 +3,16 @@
 
 <MudContainer MaxWidth="MaxWidth.Large">
     <MudPaper Class="rounded-lg pa-4" Height="100" Elevation="6">
-        @if (CircuitList.Any())
+        @if (CircuitList is not null && CircuitList.Any())
         {
-            @foreach (var circuit in CircuitList)
-            {
-                <CircuitCard CircuitElement="circuit" OnNavigateToWikipedia="() => NavigateToCircuitWikipedia(circuit.Url)"/>
-            }
+            <MudGrid Spacing="4" Justify="Justify.Center">
+                @foreach (var circuit in CircuitList)
+                {
+                    <MudItem>
+                        <CircuitCard CircuitElement="circuit" OnNavigateToWikipedia="() => NavigateToCircuitWikipedia(circuit.Url)"/>
+                    </MudItem> 
+                }
+            </MudGrid>
         }
-        <MudGrid Spacing="4" Justify="Justify.Center">
-            @for (var i = 0; i < 9; i++)
-            {
-                <MudItem>
-                    <CircuitCard OnNavigateToWikipedia="() => NavigateToCircuitWikipedia('a'.ToString())"/>
-                </MudItem>   
-            }
-        </MudGrid>
     </MudPaper>
 </MudContainer>

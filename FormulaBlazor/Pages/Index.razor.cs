@@ -1,7 +1,9 @@
 ﻿using FormulaBlazor.Features.Calendar.Models;
 using FormulaBlazor.Features.Common.Ergast;
+using FormulaBlazor.Features.Common.Ergast.Models;
 using FormulaBlazor.Features.Constructors.Models;
 using FormulaBlazor.Features.Drivers.Models;
+using FormulaBlazor.Features.Results.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace FormulaBlazor.Pages;
@@ -13,11 +15,14 @@ public partial class Index
     private ConstructorStandingsList? ConstructorStandingList { get; set; }
     private DriverStandingsList? DriverStandingsList { get; set; }
     private ScheduleDto? RaceTable { get; set; }
+
+    private RaceWithResults? RecentRace { get; set; }
+
     private bool IsSeasonDone { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        //await InitializeDashboardAsync();
+        await InitializeDashboardAsync();
         await base.OnInitializedAsync();
     }
 
@@ -34,6 +39,7 @@ public partial class Index
         DriverStandingsList = driversResponse.MrData.StandingsTable.StandingsLists[0];
 
         await FetchAndInitCalendar();
+        await FetchMostRecentRace();
     }
 
     private async Task FetchAndInitCalendar()
@@ -53,5 +59,12 @@ public partial class Index
             var enumerable = RaceTable.Races.Take(3).ToList();
             RaceTable.Races = enumerable;
         }
+    }
+
+    private async Task FetchMostRecentRace()
+    {
+        var data = await Client.GetAsync<RaceResultsResponse>("current/last/results.json");
+        var result = data.MrData.RaceTable;
+        RecentRace = result.Races.Last();
     }
 }

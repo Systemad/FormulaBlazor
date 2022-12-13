@@ -28,6 +28,7 @@ public partial class Schedule
     {
         var data = await _client.GetAsync<CalendarResponse>($"{year}.json");
         var oldStand = data.MrData.RaceTable;
+        RaceTable = null;
         RaceTable = oldStand.MapScheduleDto();
         StateHasChanged();
     }
