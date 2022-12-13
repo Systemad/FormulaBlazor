@@ -22,8 +22,8 @@ public partial class Circuits
 
     private async Task InitializeCircuits()
     {
-        var data = await _client.GetAsync<Response<MrData>>($"{DateTime.Now.Year}/circuits.json");
-        CircuitList = data.Root.CircuitTable.Circuits;
+        var data = await _client.GetAsync<CircuitResponse>($"{DateTime.Now.Year}/circuits.json");
+        CircuitList = data.MrData.CircuitTable.Circuits;
     }
 
     private void NavigateToCircuitWikipedia(string circuitId) => _navigation.NavigateTo(circuitId);

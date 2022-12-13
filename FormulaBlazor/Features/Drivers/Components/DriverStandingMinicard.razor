@@ -1,5 +1,6 @@
 ﻿@using FormulaBlazor.Features.Drivers.Models
 @using FormulaBlazor.Features.Constructors.Models
+@using FormulaBlazor.Utilities
 @if (DriverStandingsList is not null)
 {
     <MudPaper Elevation="2" Class="pa-4" Style="height: 300px; overflow: hidden">
@@ -10,17 +11,19 @@
         <MudList>
             @foreach (var driver in Drivers)
             {
-                <MudListItem Dense="true" DisableGutters="true">
+                <MudListItem Dense="true" DisableGutters="true" >
                     <div class="d-flex justify-space-between">
-                        <div>
-                            <MudAvatar Image="@ImageSource(driver.Driver.DriverId)"/>
+                        <div class="d-flex">
+                            <div class="mt-1">
+                                <MudAvatar Image="@ImageUtilities.GetImageSource(ImageType.Driver,driver.Driver.DriverId)"/>
+                            </div>
+                            <div class="ml-4">
+                                <MudText>@driver.Driver.GivenName @driver.Driver.FamilyName</MudText>
+                                <MudText Typo="Typo.body2">@driver.Constructors[0].Name</MudText>
+                            </div>
                         </div>
                         <div>
-                            <MudText>@driver.Driver.GivenName @driver.Driver.FamilyName</MudText>
-                            <MudText>@driver.Points</MudText>
-                        </div>
-                        <div>
-                            <MudText Typo="Typo.body2">@driver.Constructors[0].Name</MudText>
+                            <MudText>@driver.Points pts</MudText>
                         </div>
                     </div>
                 </MudListItem>
@@ -42,7 +45,4 @@ else
 {
     [Parameter] public DriverStandingsList? DriverStandingsList { get; set; }
     private List<DriverStanding> Drivers => DriverStandingsList.DriverStandings.Take(3).ToList();
-
-    private static string ImageSource(string source) =>  $"images/drivers/{source}.png";  
-     
 }

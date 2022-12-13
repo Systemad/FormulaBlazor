@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using FormulaBlazor.Features.Common.Ergast.Responses;
 
 namespace FormulaBlazor.Features.Common.Ergast;
 

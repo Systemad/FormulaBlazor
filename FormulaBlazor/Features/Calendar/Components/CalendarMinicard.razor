@@ -1,36 +1,46 @@
 ﻿@using FormulaBlazor.Features.Calendar.Models
+@using FormulaBlazor.Utilities
 
 @if (RaceTable is not null)
 {
-    <MudPaper Elevation="2" Class="pa-4" Style="height: 300px;">
-        <MudText Typo="Typo.h6">
-            Schedule - Season @RaceTable.Season
-        </MudText>
-        <MudDivider/>
-        @foreach(var race in RaceTable.Races)
-        {
-            <MudListItem Dense="true" DisableGutters="true">
-                <div class="d-flex justify-space-between">
-                    <div>
-                        <MudAvatar Image="@ImageSource(race.Country)"/>
+    @if (IsSeasonDone)
+    {
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 300px;">
+            Season Done - Click below to view previous season schedule
+        </MudPaper>
+    }
+    else
+    {
+        <MudPaper Elevation="2" Class="pa-4" Style="height: 300px;">
+            <MudText Typo="Typo.h6">
+                Schedule - Season @RaceTable.Season
+            </MudText>
+            <MudDivider/>
+            @foreach(var race in RaceTable.Races)
+            {
+                <MudListItem Dense="true" DisableGutters="true">
+                    <div class="d-flex justify-space-between">
+                        <div>
+                            <MudAvatar Image="@ImageUtilities.GetImageSource(ImageType.Driver, race.Country)"/>
+                        </div>
+                        <div>
+                            <MudText>@race.CircuitName</MudText>
+                            <MudText>@race.Date.ToLocalTime()</MudText>
+                        </div>
+                        <div>
+                            <MudText Typo="Typo.body2">@race.Country - @race.Round</MudText>
+                        </div>
                     </div>
-                    <div>
-                        <MudText>@race.CircuitName</MudText>
-                        <MudText>@race.Date.ToLocalTime()</MudText>
-                    </div>
-                    <div>
-                        <MudText Typo="Typo.body2">Qatar - Round 1</MudText>
-                    </div>
-                </div>
-            </MudListItem>
-        }
+                </MudListItem>
+            }
         
-        <div class="d-flex justify-end">
-            <MudButton Variant="Variant.Text" EndIcon="@Icons.Material.Filled.ArrowRight">
-                See complete schedule
-            </MudButton>
-        </div>
-    </MudPaper>   
+            <div class="d-flex justify-end">
+                <MudButton Variant="Variant.Text" EndIcon="@Icons.Material.Filled.ArrowRight">
+                    See complete schedule
+                </MudButton>
+            </div>
+        </MudPaper>    
+    }
 }
 else
 {
@@ -41,5 +51,5 @@ else
 @code
 {
     [Parameter] public ScheduleDto? RaceTable { get; set; }
-    private string ImageSource(string source) => $"images/country/{source}.png";
+    [Parameter] public bool IsSeasonDone { get; set; }
 }

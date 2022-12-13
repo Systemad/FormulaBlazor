@@ -1,7 +1,17 @@
 ﻿@page "/result/{year}/{round}"
 
 <MudContainer MaxWidth="MaxWidth.Medium" Class="pa-4">
-    <MudPaper Class="rounded-lg pa-2 d-flex justify-space-around" Height="85vh" Elevation="6">
-        <h1>Result - Round @Round - Season @Year</h1>    
+            <div class="d-flex justify-space-around mb-2">
+                <h1>Result - Round @Round - Season @Year</h1>
+            </div>
+    <MudPaper Class="rounded-lg pa-2" Elevation="6">
+        <MudTabs Centered="true" Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+            <MudTabPanel Text="Race">
+                <RaceResults Year="@Year" Round="@Round" />
+            </MudTabPanel>
+            <MudTabPanel Text="Qualifying">
+                @*** <QualifyingResults/> ***@
+            </MudTabPanel>
+        </MudTabs>
     </MudPaper>
 </MudContainer>

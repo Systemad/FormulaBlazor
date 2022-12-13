@@ -1,34 +1,17 @@
 ﻿using System.Text.Json.Serialization;
+using FormulaBlazor.Features.Common.Ergast.Models;
+using FormulaBlazor.Features.Common.Ergast.Responses;
 
 namespace FormulaBlazor.Features.Calendar.Models;
 
-public class CalendarRoot
+public class CalendarResponse
 {
     [JsonPropertyName("MRData")]
-    public MrData MrData { get; set; }
+    public CalendarResponseRoot MrData { get; set; }
 }
 
-public class MrData
+public class CalendarResponseRoot : MrDataRoot
 {
-    [JsonPropertyName("xmlns")]
-    public string Xmlns { get; set; }
-
-    [JsonPropertyName("series")]
-    public string Series { get; set; }
-
-    [JsonPropertyName("url")]
-    public string Url { get; set; }
-
-    [JsonPropertyName("limit")]
-    public string Limit { get; set; }
-
-    [JsonPropertyName("offset")]
-    public string Offset { get; set; }
-
-    [JsonPropertyName("total")]
-    public string Total { get; set; }
-
-    [JsonPropertyName("RaceTable")]
     public RaceTable RaceTable { get; set; }
 }
 
@@ -78,36 +61,6 @@ public class Race
 
     [JsonPropertyName("Sprint")]
     public FirstPractice Sprint { get; set; }
-}
-
-public class Circuit
-{
-    [JsonPropertyName("circuitId")]
-    public string CircuitId { get; set; }
-
-    [JsonPropertyName("url")]
-    public string Url { get; set; }
-
-    [JsonPropertyName("circuitName")]
-    public string CircuitName { get; set; }
-
-    [JsonPropertyName("Location")]
-    public Location Location { get; set; }
-}
-
-public class Location
-{
-    [JsonPropertyName("lat")]
-    public string Lat { get; set; }
-
-    [JsonPropertyName("long")]
-    public string Long { get; set; }
-
-    [JsonPropertyName("locality")]
-    public string Locality { get; set; }
-
-    [JsonPropertyName("country")]
-    public string Country { get; set; }
 }
 
 public class FirstPractice

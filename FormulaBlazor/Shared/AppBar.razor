@@ -27,7 +27,7 @@
     protected override void OnInitialized()
     {
         Navigation.LocationChanged += HandleLocationChanged;
-        Activate();
+        //Activate();
     }
 
     /*
@@ -45,28 +45,23 @@
         Activate();
     }
     
-/*
-    protected override void OnInitialized()
-    {
-        var uri = Navigation.ToAbsoluteUri(Navigation.Uri);
-        Navigate(uri.AbsolutePath);
-        base.OnInitialized();
-    }
-*/
-    /*
     protected override void OnAfterRender(bool firstRender)
     {
-        var uri = Navigation.ToAbsoluteUri(Navigation.Uri);
-        Navigate(uri.AbsolutePath);
-        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            Activate();
+            StateHasChanged();
+        }
+        base.OnAfterRender(firstRender); 
     }
-    */
+    
 
     private void Activate()
     {
         var uri = Navigation.ToAbsoluteUri(Navigation.Uri);
         var absolutePath = uri.AbsolutePath;
         tabs.ActivatePanel(absolutePath);
+        //StateHasChanged();
     }
     private void Navigate(string link) => Navigation.NavigateTo(link);
 }

@@ -26,7 +26,7 @@ public partial class Schedule
 
     private async Task FetchScheduleForSeason(int year)
     {
-        var data = await _client.GetAsync<CalendarRoot>($"{year}.json");
+        var data = await _client.GetAsync<CalendarResponse>($"{year}.json");
         var oldStand = data.MrData.RaceTable;
         RaceTable = oldStand.MapScheduleDto();
         StateHasChanged();
@@ -38,7 +38,7 @@ public partial class Schedule
         string text = await File.ReadAllTextAsync(
             "C:\\Users\\yeahg\\RiderProjects\\FormulaBlazor\\FormulaBlazor\\Resources\\schedule.json"
         );
-        var textSeriialize = JsonSerializer.Deserialize<CalendarRoot>(text);
+        var textSeriialize = JsonSerializer.Deserialize<CalendarResponse>(text);
         var oldStand = textSeriialize.MrData.RaceTable;
         RaceTable = oldStand.MapScheduleDto();
     }

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using FormulaBlazor.Features.Common.Ergast.Models;
 
 namespace FormulaBlazor.Features.Drivers.Models;
 
@@ -72,46 +73,4 @@ public class DriverStanding
 
     [JsonPropertyName("Constructors")]
     public List<Constructor> Constructors { get; set; }
-}
-
-public class Constructor
-{
-    [JsonPropertyName("constructorId")]
-    public string ConstructorId { get; set; }
-
-    [JsonPropertyName("url")]
-    public string Url { get; set; }
-
-    [JsonPropertyName("name")]
-    public string Name { get; set; }
-
-    [JsonPropertyName("nationality")]
-    public string Nationality { get; set; }
-}
-
-public class Driver
-{
-    [JsonPropertyName("driverId")]
-    public string DriverId { get; set; }
-
-    [JsonPropertyName("permanentNumber")]
-    public string PermanentNumber { get; set; }
-
-    [JsonPropertyName("code")]
-    public string Code { get; set; }
-
-    [JsonPropertyName("url")]
-    public string Url { get; set; }
-
-    [JsonPropertyName("givenName")]
-    public string GivenName { get; set; }
-
-    [JsonPropertyName("familyName")]
-    public string FamilyName { get; set; }
-
-    [JsonPropertyName("dateOfBirth")]
-    public string DateOfBirth { get; set; }
-
-    [JsonPropertyName("nationality")]
-    public string Nationality { get; set; }
 }

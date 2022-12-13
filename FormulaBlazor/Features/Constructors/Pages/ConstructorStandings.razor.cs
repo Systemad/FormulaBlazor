@@ -46,7 +46,7 @@ public partial class ConstructorStandings
 
     private async Task FetchSeason(int season)
     {
-        var data = await _client.GetAsync<ConstructorStandingRoot>(
+        var data = await _client.GetAsync<ConstructorStandingResponse>(
             $"{season}/constructorStandings.json"
         );
         var oldStand = data.MrData.StandingsTable.StandingsLists[0];

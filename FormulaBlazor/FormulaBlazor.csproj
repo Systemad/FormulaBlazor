@@ -15,9 +15,8 @@
     
     <ItemGroup>
       <Folder Include="Features\Drivers\Components\Skeletons" />
-      <Folder Include="Features\Results\Components" />
       <Folder Include="wwwroot\css" />
-      <Folder Include="wwwroot\images" />
+      <Folder Include="wwwroot\images\logos" />
     </ItemGroup>
     
     <ItemGroup>

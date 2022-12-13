@@ -13,6 +13,7 @@ public partial class Index
     private ConstructorStandingsList? ConstructorStandingList { get; set; }
     private DriverStandingsList? DriverStandingsList { get; set; }
     private ScheduleDto? RaceTable { get; set; }
+    private bool IsSeasonDone { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -22,7 +23,7 @@ public partial class Index
 
     private async Task InitializeDashboardAsync()
     {
-        var constructorsResponse = await Client.GetAsync<ConstructorStandingRoot>(
+        var constructorsResponse = await Client.GetAsync<ConstructorStandingResponse>(
             "current/constructorStandings.json"
         );
         ConstructorStandingList = constructorsResponse.MrData.StandingsTable.StandingsLists[0];
@@ -32,16 +33,25 @@ public partial class Index
         );
         DriverStandingsList = driversResponse.MrData.StandingsTable.StandingsLists[0];
 
-        //await FetchAndInitCalendar();
+        await FetchAndInitCalendar();
     }
 
     private async Task FetchAndInitCalendar()
     {
-        var calendarResponse = await Client.GetAsync<CalendarRoot>("current.json");
+        var calendarResponse = await Client.GetAsync<CalendarResponse>("current.json");
         var oldStand = calendarResponse.MrData.RaceTable;
         RaceTable = oldStand.MapScheduleDto();
-        RaceTable.Races.RemoveAll(a => a.Date.Month < DateTime.UtcNow.Month);
-        var enumerable = RaceTable.Races.Take(3).ToList();
-        RaceTable.Races = enumerable;
+        var seasonDone = RaceTable.Races.All(a => a.Date.Month < DateTime.UtcNow.Month);
+        if (seasonDone)
+        {
+            IsSeasonDone = true;
+        }
+        else
+        {
+            IsSeasonDone = false;
+            RaceTable.Races.RemoveAll(a => a.Date.Month < DateTime.UtcNow.Month);
+            var enumerable = RaceTable.Races.Take(3).ToList();
+            RaceTable.Races = enumerable;
+        }
     }
 }

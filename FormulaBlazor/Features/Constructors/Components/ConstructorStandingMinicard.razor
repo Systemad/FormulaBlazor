@@ -1,4 +1,5 @@
 ﻿@using FormulaBlazor.Features.Constructors.Models
+@using FormulaBlazor.Utilities
 @if (ConstructorStandingsList is not null)
 {
     <MudPaper Elevation="2" Class="pa-4" Style="height: 300px; overflow: hidden">
@@ -9,18 +10,19 @@
         <MudList>
             @foreach (var con in Constructors)
             {
-                
                 <MudListItem Dense="true" DisableGutters="true">
                     <div class="d-flex justify-space-between">
-                        <div>
-                            <MudAvatar Image="@ImageSource(con.Constructor.Nationality)"/>
+                        <div class="d-flex">
+                            <div class="mt-1">
+                                <MudAvatar Image="@ImageUtilities.GetImageSource(ImageType.Logos, con.Constructor.ConstructorId)"/>
+                            </div>
+                            <div class="ml-4">
+                                <MudText>@con.Constructor.Name</MudText>
+                                <MudText Typo="Typo.body2">@con.Constructor.Nationality</MudText>
+                            </div>
                         </div>
                         <div>
-                            <MudText>@con.Constructor.Name</MudText>
-                            <MudText>@con.Points</MudText>
-                        </div>
-                        <div>
-                            <MudText Typo="Typo.body2">@con.Constructor.Nationality</MudText>
+                            <MudText>@con.Points pts</MudText>
                         </div>
                     </div>
                 </MudListItem>
@@ -35,13 +37,11 @@
 }
 else
 {
-    <ConstructorStandingMinicardSkeleton/>
+    <MinicardSkeleton/>
 }
 
 @code
 {
     [Parameter] public ConstructorStandingsList? ConstructorStandingsList { get; set; }
     private List<ConstructorStanding> Constructors => ConstructorStandingsList.ConstructorStandings.Take(3).ToList();
-
-    private static string ImageSource(string source) => $"images/countries/{source}.png";
 }

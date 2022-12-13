@@ -1,0 +1,79 @@
+﻿@using FormulaBlazor.Utilities
+@using FormulaBlazor.Features.Common.Ergast.Models
+@using FormulaBlazor.Features.Results.Models
+@using System.Text.Json
+@using FormulaBlazor.Features.Common.Ergast
+<MudPaper Style="overflow: scroll" Elevation="0">
+    @if (RaceTable != null)
+    {
+        <MudSimpleTable Striped="true" Hover="true" Style="overflow-x: auto;">
+            <thead>
+            <tr>
+                @foreach (var h in headings)
+                {
+                    <th>@h</th>
+                }
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var x in RaceTable.Races[0].Results)
+            {
+                <tr>
+                    <td>@x.Position</td>
+                    <td>@x.Driver.PermanentNumber</td>
+                    <td>@x.Driver.GivenName @x.Driver.FamilyName</td>
+                    <td>@x.Constructor.Name</td>
+                    <td>@x.Laps</td>
+                    <td>hey</td>
+                    <td>@x.Points</td>
+                </tr>
+            }
+            </tbody>
+        </MudSimpleTable>   
+    } else if (loadFailed)
+    {
+        <h1>error sorry</h1>
+    }
+    else
+    {
+        <h1>loading</h1>
+    }
+</MudPaper>
+
+@code {
+    
+    private RaceTable? RaceTable { get; set; }
+    private bool loadFailed;
+    [Inject] private IBaseErgastClient Client { get; set; } 
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // TODO: Move HTPPClient Logic here, and do same for every other component
+        // Do this way to remove uncesseary loading fetching form APi
+        try
+        {
+        var data = await Client.GetAsync<RaceResultsResponse>($"{Year}/{Round}/results.json");
+        var result = data.MrData.RaceTable;
+            
+            string text2 = await File.ReadAllTextAsync(
+                "C:\\Users\\yeahg\\RiderProjects\\FormulaBlazor\\FormulaBlazor\\Resources\\racedata.json"
+                );
+            var textSeriialize2 = JsonSerializer.Deserialize<RaceResultsResponse>(text2);
+            var resultQual2 = textSeriialize2.MrData.RaceTable;
+            RaceTable = result;
+            loadFailed = false;
+        }
+        catch (Exception e)
+        {
+            loadFailed = true;
+            Console.WriteLine(e);
+            throw;
+        }
+
+        await base.OnParametersSetAsync();
+    }
+
+    [Parameter] public string Year { get; set; }
+    [Parameter] public string Round { get; set; }
+    string[] headings = { "POS", "NO", "DRIVER", "CAR", "LAPS", "TIME/RETIRED", "PTS" };
+}
