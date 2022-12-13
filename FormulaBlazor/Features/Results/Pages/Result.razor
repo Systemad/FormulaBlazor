@@ -7,10 +7,10 @@
     <MudPaper Class="rounded-lg pa-2" Elevation="6">
         <MudTabs Centered="true" Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
             <MudTabPanel Text="Race">
-                <RaceResults Year="@Year" Round="@Round" />
+                <RaceResults Year="@Year" Round="@Round"/>
             </MudTabPanel>
             <MudTabPanel Text="Qualifying">
-                @*** <QualifyingResults/> ***@
+                <QualifyingResults Year="@Year" Round="@Round"/>
             </MudTabPanel>
         </MudTabs>
     </MudPaper>

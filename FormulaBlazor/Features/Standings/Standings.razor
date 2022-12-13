@@ -1,13 +1,28 @@
 ﻿@page "/standings"
 <MudContainer MaxWidth="MaxWidth.Medium" Class="pa-4">
-    <MudPaper Class="rounded-lg" Height="100" Elevation="6">
-        <MudTabs Centered="true" Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
-            <MudTabPanel Text="Drivers">
-                <DriverStandings/>
-            </MudTabPanel>
-            <MudTabPanel Text="Constructors">
-                
-            </MudTabPanel>
-        </MudTabs>
+    <MudPaper Class="rounded-lg d-flex justify-space-between" Height="100" Elevation="6">
+        <MudPaper Width="80%" Elevation="0">
+                    <MudTabs Centered="true" Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+                        <MudTabPanel Text="Drivers">
+                            <DriverStandings SelectedSeason="@SelectedSeason"/>
+                        </MudTabPanel>
+                        <MudTabPanel Text="Constructors">
+                            <ConstructorStandings SelectedSeason="@SelectedSeason"/>
+                        </MudTabPanel>
+                    </MudTabs>
+        </MudPaper>
+        <MudPaper Width="20%" Elevation="0">
+            <MudSelect T="int"
+                       Value="@SelectedSeason"
+                       ValueChanged="OnSelectSeasonChanged"
+                       Label="Season / Year"
+                       LockScroll="true"
+                       AnchorOrigin="Origin.BottomCenter">
+                            @foreach(var season in SeasonList)
+                            {
+                                <MudSelectItem T="int" Value="@season"/>   
+                            }
+            </MudSelect>
+        </MudPaper>
     </MudPaper>
 </MudContainer>

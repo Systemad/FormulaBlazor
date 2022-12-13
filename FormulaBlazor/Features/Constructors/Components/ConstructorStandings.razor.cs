@@ -5,7 +5,7 @@ using FormulaBlazor.Features.Drivers.DTO;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace FormulaBlazor.Features.Constructors.Pages;
+namespace FormulaBlazor.Features.Constructors.Components;
 
 public partial class ConstructorStandings
 {
@@ -28,12 +28,14 @@ public partial class ConstructorStandings
     private bool _popOverOpen = false;
     private bool _hidePosition;
     private bool _loading;
-    private int SelectedSeason { get; set; } = DateTime.UtcNow.Year;
 
-    protected override async Task OnInitializedAsync()
+    [Parameter]
+    public int SelectedSeason { get; set; }
+
+    protected override async Task OnParametersSetAsync()
     {
+        await base.OnParametersSetAsync();
         await InitializeConstructorStandings();
-        await base.OnInitializedAsync();
     }
 
     private async Task InitializeConstructorStandings()

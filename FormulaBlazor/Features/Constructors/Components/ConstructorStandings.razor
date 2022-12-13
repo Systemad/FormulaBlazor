@@ -1,0 +1,42 @@
+﻿@using FormulaBlazor.Features.Constructors.Models
+@if (_constructorStanding is not null)
+{
+    <MudTable Items="@_constructorStanding.ConstructorStandings"
+                  Hover="true" Breakpoint="Breakpoint.Sm"
+                  FixedHeader="true"
+                  Height="85vh"
+                  Elevation="0"
+                  Loading="@_loading" LoadingProgressColor="Color.Info"
+                  T="ConstructorStanding">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Constructor Standings</MudText>
+                <MudSpacer />
+                <MudSelect T="int"
+                           Value="@SelectedSeason"
+                           ValueChanged="OnSelectSeasonChanged"
+                           Label="Season / Year"
+                           LockScroll="true" Variant="Variant.Outlined"
+                           AnchorOrigin="Origin.BottomCenter">
+                </MudSelect>
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh>Contructor</MudTh>
+                <MudTh>Points</MudTh>
+                <MudTh>Wins</MudTh>
+                <MudTh>Position</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Name">@context.Constructor.Name</MudTd>
+                <MudTd DataLabel="Points">@context.Points</MudTd>
+                <MudTd DataLabel="Wins">@context.Wins</MudTd>
+                <MudTd DataLabel="Position" HideSmall="_hidePosition">@context.Position</MudTd>
+            </RowTemplate>
+        </MudTable>
+    
+        <MudPopover Open="_popOverOpen" TransformOrigin="@Origin.CenterCenter" AnchorOrigin="@Origin.CenterCenter"
+                    Elevation="4" Class="pa-4">
+            <MudGrid Spacing="2">
+                @*** <DriverWikipediaPopoverCard Driver="_selectedDriver" OnCloseClick="ClosePopover" /> **@
+            </MudGrid>
+        </MudPopover>
+}

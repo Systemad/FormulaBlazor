@@ -1,44 +1,41 @@
 ﻿@using FormulaBlazor.Features.Drivers.DTO
 <PageTitle>Drivers</PageTitle>
-
-<MudTable Items="@_driverStanding.DriverStanding"
-          Hover="true" Breakpoint="Breakpoint.Sm"
-          FixedHeader="true"
-          Height="85vh"
-          Loading="@_loading" LoadingProgressColor="Color.Info"
-          T="DriverDto">
+@if (_driverStanding is not null)
+{
+    <MudTable Items="@_driverStanding.DriverStanding"
+              Hover="true" Breakpoint="Breakpoint.Sm"
+              FixedHeader="true"
+              Height="85vh"
+              Elevation="0"
+              Loading="@_loading" LoadingProgressColor="Color.Info"
+              T="DriverDto">
         <ToolBarContent>
-            <MudText Typo="Typo.h6">Periodic Elements</MudText>
-            <MudSpacer />
-            <MudSelect T="int"
-                       Value="@SelectedSeason"
-                       ValueChanged="OnSelectSeasonChanged"
-                       Label="Season / Year"
-                       LockScroll="true" Variant="Variant.Outlined"
-                       AnchorOrigin="Origin.BottomCenter">
-            </MudSelect>
+            <MudSpacer/>
+            <MudText Typo="Typo.h6">Driver standings</MudText>
+            <MudSpacer/>
         </ToolBarContent>
-    <HeaderContent>
-        <MudTh>Name</MudTh>
-        <MudTh>Points</MudTh>
-        <MudTh>Wins</MudTh>
-        <MudTh>Position</MudTh>
-        <MudTh>Constructor</MudTh>
-    </HeaderContent>
-    <RowTemplate>
-        <MudTd DataLabel="Name">@context.GivenName @context.FamilyName</MudTd>
-        <MudTd DataLabel="Points">@context.Points</MudTd>
-        <MudTd DataLabel="Wins">@context.Wins</MudTd>
-        <MudTd DataLabel="Position" HideSmall="_hidePosition">@context.Position</MudTd>
-        <MudTd DataLabel="Constructor">@context.Constructor</MudTd>
-    </RowTemplate>
-</MudTable>
+        <HeaderContent>
+            <MudTh>Name</MudTh>
+            <MudTh>Points</MudTh>
+            <MudTh>Wins</MudTh>
+            <MudTh>Position</MudTh>
+            <MudTh>Constructor</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Name">@context.GivenName @context.FamilyName</MudTd>
+            <MudTd DataLabel="Points">@context.Points</MudTd>
+            <MudTd DataLabel="Wins">@context.Wins</MudTd>
+            <MudTd DataLabel="Position" HideSmall="_hidePosition">@context.Position</MudTd>
+            <MudTd DataLabel="Constructor">@context.Constructor</MudTd>
+        </RowTemplate>
+    </MudTable>
     
     
-<MudPopover Open="_popOverOpen"
-            TransformOrigin="@Origin.CenterCenter" AnchorOrigin="@Origin.CenterCenter"
-            Elevation="4" Class="pa-4">
-    <MudGrid Spacing="2">
-        <DriverWikipediaPopoverCard Driver="_selectedDriver" OnCloseClick="ClosePopover" />
-    </MudGrid>
- </MudPopover>
+    <MudPopover Open="_popOverOpen"
+                TransformOrigin="@Origin.CenterCenter" AnchorOrigin="@Origin.CenterCenter"
+                Elevation="4" Class="pa-4">
+        <MudGrid Spacing="2">
+            <DriverWikipediaPopoverCard Driver="_selectedDriver" OnCloseClick="ClosePopover" />
+        </MudGrid>
+    </MudPopover>
+}

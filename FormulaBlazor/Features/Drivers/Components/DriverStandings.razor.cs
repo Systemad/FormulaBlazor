@@ -18,12 +18,13 @@ public partial class DriverStandings
     [Inject]
     private IWikiBaseClient _wikiBaseClient { get; set; }
 
-    private DriverStandingDto _driverStanding = new();
+    [Parameter]
+    public int SelectedSeason { get; set; }
+
+    private DriverStandingDto? _driverStanding { get; set; }
     private MudTable<DriverDto> mudTable;
     private int selectedRowNumber = -1;
     private DriverDto? _selectedDriver = null;
-
-    private int SelectedSeason { get; set; } = DateTime.UtcNow.Year;
 
     //private bool driverSelected = _selectedDriver == null;
 
@@ -31,11 +32,19 @@ public partial class DriverStandings
     private bool _hidePosition;
     private bool _loading;
 
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        await InitializeDriverStandings();
+    }
+
+    /*
     protected override async Task OnInitializedAsync()
     {
         await InitializeDriverStandings();
         await base.OnInitializedAsync();
     }
+    */
 
     private async Task InitializeDriverStandings()
     {
@@ -51,7 +60,9 @@ public partial class DriverStandings
             $"{SelectedSeason}/driverStandings.json"
         );
         var oldStand = data.MrData.StandingsTable.StandingsLists[0];
+        _driverStanding = null;
         _driverStanding = oldStand.MapToDriverList();
+        StateHasChanged();
     }
 
     private async Task RowClickEvent(TableRowClickEventArgs<DriverDto> driver)
@@ -95,12 +106,5 @@ public partial class DriverStandings
     {
         selectedRowNumber = -1;
         _popOverOpen = false;
-    }
-
-    private async Task OnSelectSeasonChanged(int season)
-    {
-        Console.WriteLine("Season: " + season);
-        SelectedSeason = season;
-        await FetchSeason(season);
     }
 }

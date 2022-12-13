@@ -4,7 +4,7 @@
 @using System.Text.Json
 @using FormulaBlazor.Features.Common.Ergast
 <MudPaper Style="overflow: scroll" Elevation="0">
-    @if (RaceTable != null)
+    @if (RaceTable is not null)
     {
         <MudSimpleTable Striped="true" Hover="true" Style="overflow-x: auto;">
             <thead>
@@ -24,7 +24,7 @@
                     <td>@x.Driver.GivenName @x.Driver.FamilyName</td>
                     <td>@x.Constructor.Name</td>
                     <td>@x.Laps</td>
-                    <td>hey</td>
+                    <td>@(x.PositionText == "R" || x.Time is null ? "DNF" : x.Time.Time)</td>
                     <td>@x.Points</td>
                 </tr>
             }
@@ -48,18 +48,10 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        // TODO: Move HTPPClient Logic here, and do same for every other component
-        // Do this way to remove uncesseary loading fetching form APi
         try
         {
-        var data = await Client.GetAsync<RaceResultsResponse>($"{Year}/{Round}/results.json");
-        var result = data.MrData.RaceTable;
-            
-            string text2 = await File.ReadAllTextAsync(
-                "C:\\Users\\yeahg\\RiderProjects\\FormulaBlazor\\FormulaBlazor\\Resources\\racedata.json"
-                );
-            var textSeriialize2 = JsonSerializer.Deserialize<RaceResultsResponse>(text2);
-            var resultQual2 = textSeriialize2.MrData.RaceTable;
+            var data = await Client.GetAsync<RaceResultsResponse>($"{Year}/{Round}/results.json");
+            var result = data.MrData.RaceTable;
             RaceTable = result;
             loadFailed = false;
         }

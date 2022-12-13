@@ -1,17 +1,20 @@
 ﻿@using FormulaBlazor.Features.Results.Models
 @using FormulaBlazor.Features.Common.Ergast.Models
+@using FormulaBlazor.Features.Common.Ergast
 <MudPaper Style="overflow: scroll" Elevation="0">
-    <MudSimpleTable Striped="true" Hover="true" Style="overflow-x: auto;">
-        <thead>
-        <tr>
-            @foreach (var h in headings)
-            {
-                <th>@h</th>
-            }
-        </tr>
-        </thead>
-        <tbody>
-            @foreach (var x in RaceWithQualifyingResults.QualifyingResults)
+    @if (QualifyingRaceTable is not null)
+    {
+        <MudSimpleTable Striped="true" Hover="true" Style="overflow-x: auto;">
+            <thead>
+            <tr>
+                @foreach (var h in headings)
+                {
+                    <th>@h</th>
+                }
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var x in QualifyingRaceTable.Races[0].QualifyingResults)
             {
                 <tr>
                     <td>@x.Position</td>
@@ -23,19 +26,43 @@
                     <td>@x.Q3</td>
                 </tr>
             }
-        </tbody>
-    </MudSimpleTable>
+            </tbody>
+        </MudSimpleTable>
+    } else if (loadFailed)
+    {
+        <h1>error</h1>
+    }
+    else
+    {
+        <h1>loading</h1>
+    }
 </MudPaper>
 
 @code {
 
+    [Parameter] public string Year { get; set; }
+    [Parameter] public string Round { get; set; }
+    private QualifyingRaceTable? QualifyingRaceTable { get; set; }
+    private bool loadFailed;
+    [Inject] private IBaseErgastClient Client { get; set; }
     protected override async Task OnParametersSetAsync()
     {
+        try
+        {
+            var data = await Client.GetAsync<QualifyingResponse>($"{Year}/{Round}/qualifying.json");
+            var result = data.MrData.RaceTable;
+            QualifyingRaceTable = result;
+            loadFailed = false;
+        }
+        catch (Exception e)
+        {
+            loadFailed = true;
+            Console.WriteLine(e);
+            throw;
+        }
         await base.OnParametersSetAsync();
     }
 
-    private RaceWithQualifyingResults? RaceWithQualifyingResults { get; set; }
-    private bool loaded;
     string[] headings = { "POS", "NO", "DRIVER", "CAR", "Q1", "Q2", "Q3" };
     string[] rows = {
         @"1 Krishna kpartner0@usatoday.com Male 28.25.250.202",

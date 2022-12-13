@@ -20,7 +20,7 @@ public class RaceResult : ResultBase
     public string Status { get; set; }
 
     [JsonPropertyName("Time")]
-    public ResultTime Time { get; set; }
+    public ResultTime? Time { get; set; }
 
     [JsonPropertyName("FastestLap")]
     public FastestLap FastestLap { get; set; }
