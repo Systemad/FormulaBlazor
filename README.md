@@ -1,4 +1,4 @@
-﻿
+![cover](https://user-images.githubusercontent.com/8531546/207455956-5f6dfab6-3e11-4847-ba16-b931338b7eb6.png)
 
 # Formula Blazor
 
@@ -12,6 +12,7 @@ All data is fetched from Ergast F1 API and Wikipedia using a simple HTTPClient.
 
 ## Dashboard Index layout
 * More screenshots can be found in assets folder
+![index](https://user-images.githubusercontent.com/8531546/207456011-44e90f11-8126-41b5-97d0-faaf2d3040ac.jpg)
 
 ## Libraries
 
